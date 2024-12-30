@@ -1,0 +1,38 @@
+group = 'org.carl'
+version = '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    group 'org.carl'
+    version '1.0-SNAPSHOT'
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        mavenCentral()
+
+    }
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    compileJava {
+        options.encoding = 'UTF-8'
+        options.compilerArgs << '-parameters'
+    }
+
+    compileTestJava {
+        options.encoding = 'UTF-8'
+    }
+    javadoc.options.encoding = 'UTF-8'
+    dependencies {
+        implementation enforcedPlatform(libs.quarkusPlatform)
+        implementation enforcedPlatform(libs.quarkusCamelPlatform)
+        implementation libs.bundles.base
+        implementation libs.bundles.protocol
+        testImplementation libs.quarkusJunit5
+    }
+
+    test {
+        systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    }
+}
