@@ -4,11 +4,11 @@ plugins {
 
 group = 'org.carl'
 version = '1.0-SNAPSHOT'
-def envProperties = new Properties()
-def envPropertiesFile = file('.env')
-envPropertiesFile.withReader('UTF-8') { reader ->
-    envProperties.load(reader)
-}
+//def envProperties = new Properties()
+//def envPropertiesFile = file('.env')
+//envPropertiesFile.withReader('UTF-8') { reader ->
+//    envProperties.load(reader)
+//}
 subprojects {
     apply {
         plugin("com.diffplug.spotless")
