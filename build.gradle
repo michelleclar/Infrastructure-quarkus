@@ -92,7 +92,7 @@ subprojects {
                 url = uri("https://maven.pkg.github.com/carl/Infrastructure-quarkus")
                 credentials {
                     username = 'carl'
-                    password = envProperties.getProperty('token')
+                    password = System.getenv('TOKEN')
                 }
             }
         }
