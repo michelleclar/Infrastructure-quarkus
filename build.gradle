@@ -11,7 +11,7 @@ version = '1.0-SNAPSHOT'
 //}
 subprojects {
     apply {
-        plugin("com.diffplug.spotless")
+//        plugin("com.diffplug.spotless")
         plugin("maven-publish")
         plugin("java")
         plugin("idea")
@@ -49,35 +49,35 @@ subprojects {
         systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
     }
 
-    spotless {
-        // optional: limit format enforcement to just the files changed by this feature branch
-        ratchetFrom 'origin/master'
-
-        java {
-            importOrder()
-            cleanthat()
-            googleJavaFormat("1.23.0").aosp().reflowLongStrings().formatJavadoc(false).reorderImports(false).groupArtifact("com.google.googlejavaformat:google-java-format")
-            formatAnnotations()
-        }
-        groovy {
-            importOrder()
-            removeSemicolons()
-            greclipse()
-            excludeJava()
-        }
-    }
-    afterEvaluate {
-        def spotless = tasks.findByName('spotlessApply')
-        if (spotless) {
-            tasks.withType(JavaCompile) {
-                finalizedBy(spotless)
-            }
-
-            tasks.withType(GroovyCompile) {
-                finalizedBy(spotless)
-            }
-        }
-    }
+//    spotless {
+//        // optional: limit format enforcement to just the files changed by this feature branch
+//        ratchetFrom 'origin/master'
+//
+//        java {
+//            importOrder()
+//            cleanthat()
+//            googleJavaFormat("1.23.0").aosp().reflowLongStrings().formatJavadoc(false).reorderImports(false).groupArtifact("com.google.googlejavaformat:google-java-format")
+//            formatAnnotations()
+//        }
+//        groovy {
+//            importOrder()
+//            removeSemicolons()
+//            greclipse()
+//            excludeJava()
+//        }
+//    }
+//    afterEvaluate {
+//        def spotless = tasks.findByName('spotlessApply')
+//        if (spotless) {
+//            tasks.withType(JavaCompile) {
+//                finalizedBy(spotless)
+//            }
+//
+//            tasks.withType(GroovyCompile) {
+//                finalizedBy(spotless)
+//            }
+//        }
+//    }
 
 //    tasks.withType(GenerateModuleMetadata).configureEach {
 //        // The value 'enforced-platform' is provided in the validation
