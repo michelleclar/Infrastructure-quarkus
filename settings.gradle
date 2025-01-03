@@ -20,11 +20,12 @@ dependencyResolutionManagement {
         libs {
             // versions
             version('quarkus', '3.17.5')
-            version('jooq', '3.19.10')
+            version('camel', '3.17.0')
+            version('jooq', '3.19.12')
             version('jooqQuarkiverse', '2.0.1')
             version('slf4j-jboss-logmanager', '2.0.1.Final')
             version('testcontainers', '1.19.6')
-            version('consul', '2.4.0')
+            version('consul', '2.2.2')
             version('hanlp', 'portable-1.8.4')
             version('commons', '4.4')
             version('guava', '33.2.1-jre')
@@ -36,8 +37,7 @@ dependencyResolutionManagement {
             library('quarkusSmallryeOpenapi', 'io.quarkus', 'quarkus-smallrye-openapi').versionRef('quarkus')
             library('quarkusArc', 'io.quarkus', 'quarkus-arc').versionRef('quarkus') //CDI
             library('quarkusJunit5', 'io.quarkus', 'quarkus-junit5').versionRef('quarkus')
-
-            library('gson', 'org.apache.camel.quarkus', 'camel-quarkus-gson').versionRef('quarkus')
+            library('gson', 'org.apache.camel.quarkus', 'camel-quarkus-gson').versionRef('camel')
 
             // NOTE: protocol
             library('websocket', 'io.quarkus', 'quarkus-websockets-client').versionRef('quarkus')
@@ -57,14 +57,14 @@ dependencyResolutionManagement {
             // NOTE: db
             library('agroal', 'io.quarkus', 'quarkus-agroal').versionRef('quarkus')
             library('quarkusJdbcPostgreSQL', 'io.quarkus', 'quarkus-jdbc-postgresql').versionRef('quarkus')
-
+            // TODO: need check , Is it necessary to do this?
             library('quarkusReactivePgClient', 'io.quarkus', 'quarkus-reactive-pg-client').versionRef('quarkus')
 
             library('mongodb', 'io.quarkus', 'quarkus-mongodb-client').versionRef('quarkus')
             library('redis', 'io.quarkus', 'quarkus-redis-client').versionRef('quarkus')
 
 
-            //NOTE: tool
+            // NOTE: tool
             library('flyway', 'io.quarkus', 'quarkus-flyway').versionRef('quarkus')
             library('dbHealth', 'io.quarkus', 'quarkus-smallrye-health').versionRef('quarkus')
             library('graphql', 'io.quarkus', 'quarkus-smallrye-graphql').versionRef('quarkus')
@@ -85,7 +85,7 @@ dependencyResolutionManagement {
             library('es', 'io.quarkus', 'quarkus-elasticsearch-java-client').versionRef('quarkus')
 
             // NOTE: consul
-            library('consul', 'io.quarkiverse.config', 'quarkus-config-consul').versionRef('quarkus')
+            library('consul', 'io.quarkiverse.config', 'quarkus-config-consul').version('2.2.2')
 //            library('consulStork', 'io.smallrye.stork', 'stork-service-discovery-consul').versionRef('quarkus')
 //            library('consulClient', 'io.smallrye.reactive', 'smallrye-mutiny-vertx-consul-client').versionRef('quarkus')
             library('pulsar', 'io.quarkus', 'quarkus-messaging-pulsar').versionRef('quarkus')
@@ -100,20 +100,19 @@ dependencyResolutionManagement {
             library('jwt', 'io.quarkus', 'quarkus-smallrye-jwt').versionRef('quarkus')
             library('jwtBuild', 'io.quarkus', 'quarkus-smallrye-jwt-build').versionRef('quarkus')
 
-            //NOTE: NLP
+            // NOTE: NLP
             library('hanlp', 'com.hankcs', 'hanlp').versionRef('hanlp')
             // NOTE: SMTP
             library('smtp', 'io.quarkus', 'quarkus-mailer').versionRef('quarkus')
-
             // NOTE: valid
             library('valid', 'io.quarkus', 'quarkus-hibernate-validator').versionRef('quarkus')
 
             // NOTE: base
-            bundle('base', ['gson', 'quarkusArc', 'quarkusJunit5', 'cache', 'consul', 'quarkusSmallryeOpenapi','slf4jJbossLogManager'])
+            bundle('base', ['gson', 'quarkusArc', 'quarkusJunit5', 'consul', 'quarkusSmallryeOpenapi'])
             // NOTE: persistence
-            bundle('persistence', ['quarkusJdbcPostgreSQL', 'quarkusReactivePgClient', 'mongodb', 'agroal', 'jooqQuarkus'])
+            bundle('persistence', ['quarkusJdbcPostgreSQL', 'quarkusReactivePgClient', 'mongodb', 'agroal', 'jooq'])
             // NOTE: cache
-            bundle('cache', ['cache'])
+            bundle('cache', ['cache','redis'])
             // NOTE: message
             bundle('mq', ['pulsar'])
             // NOTE: search
