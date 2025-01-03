@@ -29,8 +29,13 @@ idea {
 
 def envProperties = new Properties()
 def envPropertiesFile = file('.env')
-envPropertiesFile.withReader('UTF-8') { reader ->
-    envProperties.load(reader)
+if (envPropertiesFile.exists()) {
+    envPropertiesFile.withReader('UTF-8') { reader ->
+        envProperties.load(reader)
+    }
+    println "Loaded environment properties from .env"
+} else {
+    println ".env file not found, skipping loading environment properties."
 }
 
 import nu.studer.gradle.jooq.JooqEdition
