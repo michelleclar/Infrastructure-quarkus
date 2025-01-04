@@ -1,4 +1,4 @@
-package org.carl.engine.generator;
+package org.carl.persistence.engine.generator;
 
 import jakarta.xml.bind.annotation.XmlTransient;
 import java.util.HashMap;
